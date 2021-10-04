@@ -10,6 +10,7 @@
     if(isset($password) && isset($name)){
         
         try{
+            $_SESSION['user_name'] = $name;
             
             require_once '../createtable/newtable.php';
 
@@ -23,7 +24,6 @@
 
             if($stm -> rowCount()>=1){
                 
-                echo 1;
                 $_SESSION['CreateAccountSuccessfull'] = true;
                 header('Location: ../../../index.php');
 

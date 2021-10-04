@@ -18,8 +18,11 @@ if($_SESSION['logged']){
     if(!$_SESSION['logged'] && !$_SESSION['fa'])
         require_once 'layout/modalCredentials.html';
 
-    if($_SESSION['CreateAccountSuccessfull'])
+    if($_SESSION['CreateAccountSuccessfull']){
         require_once 'layout/modalSucessAccount.html';
+        $_SESSION['CreateAccountSuccessfull'] = false;
+    }
+        
 }
 
 require_once 'layout/footer.html';

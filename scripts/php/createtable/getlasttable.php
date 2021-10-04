@@ -11,7 +11,7 @@
 
         if($stm->rowCount()>=1){
 
-            preg_replace("/[^0-9]/", "",$stm->fetch(PDO::FETCH_ASSOC)['tab']);
+            $idTable = preg_replace("/[^0-9]/", "",$stm->fetch(PDO::FETCH_ASSOC)['tab']);
 
         }else{
 

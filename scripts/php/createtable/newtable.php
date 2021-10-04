@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     require_once '../conn.php';
 
     require_once 'getlasttable.php';
@@ -21,7 +23,8 @@
                     datereg_tbf DATETIME NOT NULL);');
             $stm->execute();
 
-            $stm= $pdo->prepare('INSERT INTO '.$idTable.' (expense_tbf,description_tbf,regby_tbf,datereg_tbf) VALUES (0,"first reg","user",NOW())');
+            $stm= $pdo->prepare('INSERT INTO '.$idTable.' (expense_tbf,description_tbf,regby_tbf,datereg_tbf) VALUES (0,"first reg",:us,NOW())');
+            $stm->bindValue(':us', $_SESSION['user_name']);
             $stm->execute();
 
             $stm= $pdo->prepare('SELECT * FROM '.$idTable);
@@ -29,7 +32,8 @@
 
             if($stm->rowCount()>=1){
 
-                $stm= $pdo->prepare('INSERT INTO tb_tables (name_table,createdby_table,regday_table) VALUES (:nm,"user",NOW())');
+                $stm= $pdo->prepare('INSERT INTO tb_tables (name_table,createdby_table,regday_table) VALUES (:nm,:us,NOW())');
+                $stm->bindValue(':us', $_SESSION['user_name']);
                 $stm->bindValue(':nm', $idTable);
                 $stm->execute();
                 
