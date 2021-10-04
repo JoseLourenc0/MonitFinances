@@ -1,0 +1,25 @@
+    <title>Sign In</title>
+
+    <link rel="stylesheet" href="assets/css/login.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div style="background-color: transparent;" class="card">
+                    <form id="form" method="POST" action="scripts/php/login/auth.php" class="box">
+                        <h1>Login</h1>
+                        <p class="text-muted"> Enter your login and password</p>
+                        <input id="name" type="name" name="name" placeholder="Username" required> 
+                        <input id="password" type="password" name="password" placeholder="Password"> 
+                        <button>Login</button>
+                    </form>
+                    <div class="col-md-12 mt box">
+                        <a href="newuser.php">Create New Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

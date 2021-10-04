@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(to right, #e52165 , #0d1137);
+    text-align: center;
+}
+
+.cdiv{
+    margin: 0 auto;
+}
+
+#logout{
+    background: whitesmoke;
+    bottom: 1em;
+    right: 1em;
+    position: absolute;
+    align-items: center;
+    padding:15px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#logout:hover{
+    padding: 18px;
+}

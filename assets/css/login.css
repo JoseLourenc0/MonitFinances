@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: linear-gradient(to right, #e52165 , #0d1137);
+}
+
+.card {
+    margin-bottom: 20px;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box{
+    min-width: 40%;
+    padding: 40px;
+    padding-bottom: 0;
+    background: #191919;
+    text-align: center;
+    transition: 0.25s;
+    margin-top: 100px;
+}
+
+.mt{
+    padding-top: 0;
+    padding-bottom: 40px;
+}
+
+.mt a{
+    color:thistle;
+    text-decoration: underline;
+    transition: 0.7s;
+}
+
+.mt a:hover{
+    color:#ffc13b;
+}
+
+.box input[type="name"],
+.box input[type="password"] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #e52165;
+    padding: 10px 10px;
+    min-width: 68%;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s
+}
+
+.container, .container div{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.box h1 {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500
+}
+
+.box input[type="name"]:focus,
+.box input[type="password"]:focus {
+    min-width: 77%;
+    border-color: #ffc13b
+}
+
+.box button {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #ffc13b;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer
+}
+
+.box button:hover {
+    background: #ffc13b;
+    color: #0d1137
+}
