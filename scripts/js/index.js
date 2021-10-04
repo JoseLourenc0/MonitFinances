@@ -37,6 +37,34 @@ const addExpense = () => {
 
 }
 
+const getTablesList = () => {
+    let listtables = document.getElementById('listtables')
+
+    $.ajax({
+
+        url : 'scripts/php/indexPage/getTables.php',
+        method : 'GET',
+        dataType : 'json'
+
+    }).done( e => {
+
+        if(e){
+
+            e.forEach(element => {
+                listtables.innerHTML = 
+                `
+                    <option value = "${element.table}">
+                        ${element.tab}
+                    </option>
+                `
+            })
+            
+        }
+
+    })
+
+}
+
 function buildModal(mtitle='Modal Title',mmsg='No message for you :3',mcolor='btn-primary'){
     let title = document.getElementById('ModalTitle')
     let body = document.getElementById('ModalBody')
@@ -51,3 +79,7 @@ function buildModal(mtitle='Modal Title',mmsg='No message for you :3',mcolor='bt
     })
     
 }
+
+$(document).ready(function(){
+    getTablesList()
+})
