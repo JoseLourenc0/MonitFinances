@@ -75,8 +75,6 @@ const getExpenses = () => {
 
     }).done( e => {
 
-        console.log(e)
-
         if(e){
 
             let total = 0
@@ -153,6 +151,46 @@ const removeReg = d => {
     }
 }
 
+const buildChart = () => {
+
+    $.ajax({
+        
+        url : 'scripts/php/indexPage/getExpenses.php',
+        method : 'GET',
+        dataType : 'json'
+
+    }).done( e => {
+
+        let arr = []
+        let tval = 0
+
+        e.forEach( (u,i) => {
+
+            tval += parseFloat(u.exp.replace(',','.'))
+            arr[i] = new Array
+            arr[i][0] = u.datereg
+            arr[i][1] = tval
+
+        })
+
+        let arr1 = [['DATE','Wallet']]
+        let arrt = arr1.concat(arr)
+
+        let data = google.visualization.arrayToDataTable(arrt)
+        let options = {
+            title: 'DATE x Wallet',
+            legend: { position: 'right'}
+        }
+        let chart = new google.visualization.LineChart(document.getElementById('chart'))
+
+        chart.draw(data,options)
+
+    })
+    
+    
+
+}
+
 function buildModal(mtitle='Modal Title',mmsg='No message for you :3',mcolor='btn-primary'){
     let title = document.getElementById('ModalTitle')
     let body = document.getElementById('ModalBody')
@@ -171,4 +209,7 @@ function buildModal(mtitle='Modal Title',mmsg='No message for you :3',mcolor='bt
 $(document).ready(function(){
     getTablesList()
     getExpenses()
+
+    google.charts.load('current',{'packages':['corechart']})
+    google.charts.setOnLoadCallback(buildChart)
 })
