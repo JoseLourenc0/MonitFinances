@@ -161,29 +161,32 @@ const buildChart = () => {
 
     }).done( e => {
 
-        let arr = []
-        let tval = 0
+        if(e && e>=1){
+            let arr = []
+            let tval = 0
 
-        e.forEach( (u,i) => {
+            e.forEach( (u,i) => {
 
-            tval += parseFloat(u.exp.replace(',','.'))
-            arr[i] = new Array
-            arr[i][0] = u.datereg
-            arr[i][1] = tval
+                tval += parseFloat(u.exp.replace(',','.'))
+                arr[i] = new Array
+                arr[i][0] = u.datereg
+                arr[i][1] = tval
 
-        })
+            })
 
-        let arr1 = [['DATE','Wallet']]
-        let arrt = arr1.concat(arr)
+            let arr1 = [['DATE','Wallet']]
+            let arrt = arr1.concat(arr)
 
-        let data = google.visualization.arrayToDataTable(arrt)
-        let options = {
-            title: 'DATE x Wallet',
-            legend: { position: 'right'}
+            let data = google.visualization.arrayToDataTable(arrt)
+            let options = {
+                title: 'DATE x Wallet',
+                legend: { position: 'right'}
+            }
+            let chart = new google.visualization.LineChart(document.getElementById('chart'))
+
+            chart.draw(data,options)
         }
-        let chart = new google.visualization.LineChart(document.getElementById('chart'))
-
-        chart.draw(data,options)
+        
 
     })
     
