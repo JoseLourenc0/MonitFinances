@@ -79,13 +79,14 @@ const getExpenses = () => {
 
         if(e){
 
+            let total = 0
+
 			list.innerHTML = ''
 
             e.forEach( u => {
 
                 let row = list.insertRow()
 
-				//Criando as colunas (td)
 				row.insertCell(0).innerHTML = u.description
 				row.insertCell(1).innerHTML = 
                                                 `
@@ -95,13 +96,61 @@ const getExpenses = () => {
                                                 `
 				row.insertCell(2).innerHTML = u.datereg
 
+                let btn = document.createElement('button')
+				btn.className = 'btn btn-danger'
+				btn.innerHTML = '<i class="fa fa-times"  ></i>'
+				btn.onclick = function(){
+					removeReg(u.datereg)
+				}
+				row.insertCell(3).append(btn)
+                
+                total += parseFloat(u.exp.replace(',','.'))
+
             })
+
+            let row = list.insertRow()
+            row.insertCell(0).innerHTML = '<strong style="text-align:right">Total:</strong>'
+			row.insertCell(1).innerHTML = 
+                                                `
+                                                <p class='${total>=0?'greenp':'redp'}'>    
+                                                   U$ ${String(total).includes('.') ? String(total.toFixed(2)).replace('.',',') : total+',00'}
+                                                </p>
+                                                `
+			row.insertCell(2).innerHTML = ''
+            row.insertCell(3).innerHTML = ''
 
         }
 
     })
 
 
+}
+
+const removeReg = d => {
+
+    let table = document.getElementById('listtables').value
+
+    if(d){
+        $.ajax(
+            {
+                url : 'scripts/php/indexPage/removeReg.php',
+                data : 
+                    {
+                        d,
+                        table
+                    },
+                method : 'POST',
+                dataType : 'json'
+            }
+        ).done( e => {
+
+            if(e===1){
+                getExpenses()
+                buildModal('Success','Reg removed','btn-success')
+            }
+
+        })
+    }
 }
 
 function buildModal(mtitle='Modal Title',mmsg='No message for you :3',mcolor='btn-primary'){
