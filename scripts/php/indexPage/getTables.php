@@ -16,7 +16,7 @@
 
         }else{
 
-            $idTable = 0;
+            echo 0;
 
         }
 

@@ -23,12 +23,11 @@ const addExpense = () => {
             }
         ).done( e => {
 
-            console.log(e)
-
             if(e===1){
                 buildModal('Success','New Reg created','btn-success')
                 document.getElementById('description').value = ''
                 document.getElementById('value').value = ''
+                getExpenses()
             }
 
         })
@@ -53,15 +52,55 @@ const getTablesList = () => {
             e.forEach(element => {
                 listtables.innerHTML = 
                 `
-                    <option value = "${element.table}">
+                    <option value = "${element.tab}">
                         ${element.tab}
                     </option>
                 `
             })
-            
+
         }
 
     })
+
+}
+
+const getExpenses = () => {
+    let list = document.getElementById('list')
+
+    $.ajax({
+        
+        url : 'scripts/php/indexPage/getExpenses.php',
+        method : 'GET',
+        dataType : 'json'
+
+    }).done( e => {
+
+        console.log(e)
+
+        if(e){
+
+			list.innerHTML = ''
+
+            e.forEach( u => {
+
+                let row = list.insertRow()
+
+				//Criando as colunas (td)
+				row.insertCell(0).innerHTML = u.description
+				row.insertCell(1).innerHTML = 
+                                                `
+                                                <p class='${u.exp.replace(',','.')>=0?'greenp':'redp'}'>    
+                                                   U$ ${u.exp}
+                                                </p>
+                                                `
+				row.insertCell(2).innerHTML = u.datereg
+
+            })
+
+        }
+
+    })
+
 
 }
 
@@ -82,4 +121,5 @@ function buildModal(mtitle='Modal Title',mmsg='No message for you :3',mcolor='bt
 
 $(document).ready(function(){
     getTablesList()
+    getExpenses()
 })

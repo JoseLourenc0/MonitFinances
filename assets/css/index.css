@@ -3,7 +3,10 @@ body {
     padding: 0;
     font-family: sans-serif;
     background: linear-gradient(to right, #e52165 , #0d1137);
-    text-align: center;
+}
+
+h1{
+    
 }
 
 .cdiv{
@@ -23,4 +26,12 @@ body {
 
 #logout:hover{
     padding: 18px;
+}
+
+.redp{
+    color:#d4422f;
+}
+
+.greenp{
+    color:#00ad51;
 }
