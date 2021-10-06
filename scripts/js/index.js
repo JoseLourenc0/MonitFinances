@@ -28,6 +28,7 @@ const addExpense = () => {
                 document.getElementById('description').value = ''
                 document.getElementById('value').value = ''
                 getExpenses()
+                buildChart()
             }
 
         })
@@ -161,7 +162,7 @@ const buildChart = () => {
 
     }).done( e => {
 
-        if(e && e>=1){
+        if(e && e.length>=1){
             let arr = []
             let tval = 0
 
