@@ -1,6 +1,6 @@
 const addExpense = () => {
     
-    let description = document.getElementById('description').value
+    let description = getMonth() + ': ' + document.getElementById('description').value
     let val = document.getElementById('value').value
     let table = document.getElementById('listtables').value
     
@@ -193,6 +193,22 @@ const buildChart = () => {
     
     
 
+}
+
+const getMonth = (a = '') => {
+
+    const arrMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+    if(!a){
+
+        const dt = new Date();
+        return arrMonths[dt.getMonth()]
+
+    }else{
+
+        return arrMonths[++a]
+
+    }
 }
 
 function buildModal(mtitle='Modal Title',mmsg='No message for you :3',mcolor='btn-primary'){
