@@ -82,7 +82,7 @@ const getExpenses = () => {
 
 			list.innerHTML = ''
 
-            e.forEach( u => {
+            e.reverse().forEach( u => {
 
                 let row = list.insertRow()
 
