@@ -1,3 +1,6 @@
+const arrMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+const arrPtMonths = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+
 const addExpense = () => {
     
     let description = getMonth() + ': ' + document.getElementById('description').value
@@ -5,7 +8,7 @@ const addExpense = () => {
     let table = document.getElementById('listtables').value
     
     if(description && val && table){
-        val = val.replace('U$','')
+        val = val.replace('R$','')
         val = val.replaceAll('.','')
         val = val.trim()
 
@@ -90,7 +93,7 @@ const getExpenses = () => {
 				row.insertCell(1).innerHTML = 
                                                 `
                                                 <p class='${u.exp.replace(',','.')>=0?'greenp':'redp'}'>    
-                                                   U$ ${u.exp}
+                                                   R$ ${u.exp}
                                                 </p>
                                                 `
 				row.insertCell(2).innerHTML = u.datereg
@@ -112,7 +115,7 @@ const getExpenses = () => {
 			row.insertCell(1).innerHTML = 
                                                 `
                                                 <p class='${total>=0?'greenp':'redp'}'>    
-                                                   U$ ${String(total).includes('.') ? String(total.toFixed(2)).replace('.',',') : total+',00'}
+                                                   R$ ${String(total).includes('.') ? String(total.toFixed(2)).replace('.',',') : total+',00'}
                                                 </p>
                                                 `
 			row.insertCell(2).innerHTML = ''
@@ -191,22 +194,22 @@ const buildChart = () => {
 
     })
     
-    
+}
 
+const groupByMonth = () => {
+    
 }
 
 const getMonth = (a = '') => {
 
-    const arrMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-
     if(!a){
 
         const dt = new Date();
-        return arrMonths[dt.getMonth()]
+        return arrPtMonths[dt.getMonth()]
 
     }else{
 
-        return arrMonths[++a]
+        return arrPtMonths[++a]
 
     }
 }
