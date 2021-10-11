@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="assets/css/index.css">
 <script src="scripts/js/index.js"></script>
+<script src="scripts/js/filter.js"></script>
 <script src="https://jsuites.net/v4/jsuites.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -18,8 +19,11 @@
         
         <div class="col-md-11 cdiv">
             <div class="row mb-2">
+                <div class="col-md-2">
+                    <h3>Registro</h3>
+                </div>
 
-                <div class="col-md-5">
+                <div class="col-md-4">
                   <input type="text" class="form-control" placeholder="Descrição" id="description" />
                 </div>
 
@@ -33,9 +37,37 @@
                     </select>
                 </div>
 
-                <div class="col-md-2 d-flex justify-content-end">
+                <div class="col-md-1 d-flex justify-content-end">
                   <button type="button" class="btn btn-primary" onclick="addExpense()">
                     <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-1">
+                    <h3>Filtro</h3>
+                </div>
+                <div class="col-md-3">
+                  <select type="text" class="form-control" placeholder="Mês" id="filterByMonth" onchange="filter()">
+                      
+                  </select>
+                </div>
+
+                <div class="col-md-3">
+                    <select type="text" class="form-control" placeholder="Mês" id="filterByOcor" onchange="filter()">
+                        
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <input class="form-control" placeholder="Descrição" id="filterByDescription" onkeyup="filter()">
+                </div>
+
+                <div class="col-md-1 d-flex justify-content-end">
+                  <button type="button" class="btn btn-primary" onclick="getExpenses();buildChart()">
+                    <i class="fas fa-search"></i>
                   </button>
                 </div>
                 

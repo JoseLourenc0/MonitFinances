@@ -1,5 +1,8 @@
 const arrMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 const arrPtMonths = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+
+let Expenses = []
 
 const addExpense = () => {
     
@@ -68,6 +71,8 @@ const getTablesList = () => {
 
 }
 
+let Alldata 
+
 const getExpenses = () => {
     let list = document.getElementById('list')
 
@@ -80,12 +85,17 @@ const getExpenses = () => {
     }).done( e => {
 
         if(e){
-
             let total = 0
 
 			list.innerHTML = ''
 
-            e.reverse().forEach( u => {
+            e.reverse().forEach( (u,i) => {
+
+                Expenses[i] = new Object
+                Expenses[i].value = u.exp.replace(',','.')
+                Expenses[i].description = u.description
+                Expenses[i].descriptionUC = u.description.toUpperCase()
+                Expenses[i].date = u.datereg
 
                 let row = list.insertRow()
 
